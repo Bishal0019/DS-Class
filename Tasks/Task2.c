@@ -36,6 +36,17 @@ int main(){
             printf("Enter CGPA: ");
             scanf("%f",&arr[size-1].cgpa);
             printf("Input Complete....\n\n");
+            
+            if(size>1){
+                for(int i=0;i<size-1;i++){
+                    struct student temp;
+                    if(arr[i].roll>arr[i+1].roll){
+                        temp=arr[i];
+                        arr[i]=arr[i+1];
+                        arr[i+1]=temp;
+                    }
+                }
+            }
         }
 
         //Editing Student Data
