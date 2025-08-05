@@ -2,16 +2,38 @@
 
 #include <stdio.h>
 
-int main(){
-    printf("Enput matrix 1\n");
-    printf("Enter No. of non-zero elments: ");
-    int size1,size2;
-    scanf("%d",&size1);
-    int mat1[3][size1];
-    for(int i=0;i<size1;i++){
-        printf("Enter Row, Column & Value for element %d: ",i+1);
-        scanf("%d %d %d",&mat1[0][i],&mat1[1][i],&mat1[2][i]);
+const int max=100;
+
+int matrixSparcer(int mat1[3][max]){
+    printf("Enter Matrix:\n");
+    int r,c,k=0;
+    printf("Enter Rows and Columns: ");
+    scanf("%d %d",&r,&c);
+    int arr1[r][c];
+    for(int i=0;i<r;i++){
+        for(int j=0;j<c;j++){
+            printf("Enter Elemnt for Row %d, Column %d: ",i+1,j+1);
+            scanf("%d",&arr1[i][j]);
+        }
     }
+    for(int i=0;i<r;i++){
+        for(int j=0;j<c;j++){
+            if(arr1[i][j]!=0){
+                mat1[0][k]=i;
+                mat1[1][k]=j;
+                mat1[2][k]=arr1[i][j];
+                k++;
+            }
+        }
+    }
+    return k;
+}
+
+int main(){
+    int mat1[3][max],mat2[3][max];
+    int size1=matrixSparcer(mat1);
+    int size2=matrixSparcer(mat2);
+
     for (int i=0;i<size1-1;i++) {
         for (int j=0;j<size1-i-1;j++) {
             if(mat1[0][j]>mat1[0][j + 1] || (mat1[0][j]==mat1[0][j + 1] && mat1[1][j]>mat1[1][j + 1])){
@@ -31,15 +53,6 @@ int main(){
         }
     }
 
-
-    printf("Enput matrix 2\n");
-    printf("Enter No. of non-zero elments: ");
-    scanf("%d",&size2);
-    int mat2[3][size2];
-    for(int i=0;i<size2;i++){
-        printf("Enter Row, Column & Value for element %d: ",i+1);
-        scanf("%d %d %d",&mat2[0][i],&mat2[1][i],&mat2[2][i]);
-    }
     for (int i=0;i<size2-1;i++) {
         for (int j=0;j<size2-i-1;j++) {
             if(mat2[0][j]>mat2[0][j + 1] || (mat2[0][j]==mat2[0][j + 1] && mat2[1][j]>mat2[1][j + 1])){
