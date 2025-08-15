@@ -108,7 +108,7 @@ struct node* delIndex(struct node* head,int index){
 }
 
 int main(){
-    struct node* head;
+    struct node* head=NULL;
     struct node* current;
 
     current=(struct node*)malloc(sizeof(struct node));
