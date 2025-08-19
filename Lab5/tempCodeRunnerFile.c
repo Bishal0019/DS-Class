@@ -1,1 +1,0 @@
-head=delPos(head,2);
