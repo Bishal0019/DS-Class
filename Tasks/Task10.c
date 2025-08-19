@@ -52,7 +52,7 @@ int main(){
 
     head=current1;
 
-    struct node *ptr=nthNode(head,5);
+    struct node *ptr=nthNode(head,2);
     printf("Element = %d, at Address = %p\n",ptr->data,ptr); 
 
     return 0;
