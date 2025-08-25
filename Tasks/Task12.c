@@ -1,4 +1,4 @@
-//Check wheather the given lisked list is either NULL-terminated or ends in a cycle (cyclic)
+//Check wheather a given linked list is NULL-terminated or not. If there is a cyclefind the start node of the loop
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -8,20 +8,26 @@ struct node{
     struct node *next;
 };
 
-void checkCyclic(struct node *head){
-    struct node *slow=head;
-    struct node *fast=head;
+struct node *checkCyclic(struct node *head){
+    struct node *slow=head, *fast=head;
+    int flag=0;
 
-    while(fast!=NULL && fast->next!=NULL){
+    while (fast!=NULL && fast->next!=NULL)
+    {
         slow=slow->next;
         fast=fast->next->next;
 
         if(slow==fast){
-            printf("Cyclic LinkedList\n");
-            return;
+            flag=1;
+            slow=head;
+            while(slow!=fast){
+                slow=slow->next;
+                fast=fast->next;
+            }
+            return slow;
         }
     }
-    printf("NULL-Terminated LinkedList\n");
+    if(flag==0) return NULL;
 }
 
 int main(){
@@ -50,7 +56,11 @@ int main(){
 
     head=current1;
 
-    checkCyclic(head);
-
-    return 0;
+    struct node *loop=checkCyclic(head);
+    if(loop==NULL){
+        printf("NULL-Terminated\n");
+    }
+    else{
+        printf("Cyclic, with starting node: %p\n",loop);
+    }
 }
